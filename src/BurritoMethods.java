@@ -5,12 +5,31 @@ public class BurritoMethods {
         Random random = new Random();
 
 
-//            TALLYING INGREDIENTS USED
-            int whiteRiceCounter, brownRiceCounter, chickenCounter, steakCounter, carnidasCounter, chorizoCounter,
-                    sofritasCounter, veggieMeatCounter, pintoBeanCounter, blackBeanCounter, mildSalsaCounter, mediumSalsaCounter, hotSalsaCounter,
-                    lettuceCounter, fajitasCounter, cheeseCounter, guacCounter, quesoCounter, sourCreamCounter;
+//            INGREDIENTS USED COUNTERS
+//        int chickenCounter, steakCounter, carnidasCounter, chorizoCounter,
+//        sofritasCounter, veggieMeatCounter, pintoBeanCounter, blackBeanCounter, mildSalsaCounter, mediumSalsaCounter, hotSalsaCounter,
+//        lettuceCounter, fajitasCounter, cheeseCounter, guacCounter, quesoCounter, sourCreamCounter = 0;
 
-
+        int whiteRiceCounter=0;
+        int brownRiceCounter=0;
+        int chickenCounter=0;
+        int steakCounter= 0;
+        int carnidasCounter = 0;
+        int chorizoCounter =0;
+        int sofritasCounter = 0;
+        int veggieMeatCounter =0;
+        int pintoBeanCounter=0;
+        int blackBeanCounter =0;
+        int mildSalsaCounter = 0;
+        int mediumSalsaCounter =0;
+        int hotSalsaCounter =0;
+        int lettuceCounter =0;
+        int fajitasCounter =0;
+        int cheeseCounter = 0;
+        int guacCounter =0;
+        int quesoCounter =0;
+        int sourCreamCounter=0;
+        double grandTotal =0;
 
 
 
@@ -40,78 +59,257 @@ public class BurritoMethods {
             double quesoPrice = quesoPrice(queso);
             double sourcreamPrice = sourcreamPrice(sourcream);
 
+            //the price of each ingredient generated is calculated but they are not added to the price of the burrito
+            //until they are used
+
+
+
+            //TALLYING INGREDIENTS (but not adding to counter - they have not been used yet)
+            int whiteRiceTally = 0;
+            int brownRiceTally = 0;
+            switch(rice){
+                case ("white rice"):
+                    whiteRiceTally++;
+                    break;
+                case ("brown rice"):
+                    brownRiceTally++;
+                    break;
+                case ("white and brown rice"):
+                    whiteRiceTally++;
+                    brownRiceTally++;
+                    break;
+
+                case("no rice"):
+                    break;
+            }
+
+            int chickenTally =0;
+            int steakTally =0;
+            int carnidasTally= 0;
+            int chorizoTally =0;
+            int sofritasTally =0;
+            int veggieMeatTally = 0;
+            switch (meat){
+
+                case("chicken"):
+                    chickenTally++;
+                    break;
+                case("steak"):
+                    steakTally++;
+                    break;
+                case("carnidas"):
+                    carnidasTally++;
+                    break;
+                case("chorizo"):
+                    carnidasTally++;
+                    break;
+                case("sofritas"):
+                    sofritasTally++;
+                    break;
+                case("veggie meat"):
+                    veggieMeatTally++;
+                    break;
+                case("all meat"):
+                    veggieMeatTally++;
+                    sofritasTally++;
+                    carnidasTally++;
+                    steakTally++;
+                    chickenTally++;
+                    break;
+                case("no meat"):
+                    break;
+            }
+
+            int pintoBeanTally = 0;
+            int blackBeanTally =0;
+            switch (beans){
+                    case ("pinto beans"):
+                        pintoBeanTally++;
+                        break;
+                    case ("black beans"):
+                        blackBeanTally++;
+                        break;
+                    case ("black and pinto beans"):
+                        blackBeanTally++;
+                        pintoBeanTally++;
+                        break;
+                    case ("no beans"):
+                        break;
+                }
+
+            int mildSalsaTally=0;
+            int mediumSalsaTally=0;
+            int hotSalsaTally=0;
+            switch (salsa){
+
+                    case ("mild salsa"):
+                        mildSalsaTally++;
+                        break;
+                    case ("medium salsa"):
+                        mediumSalsaTally++;
+                        break;
+                    case ("hot salsa"):
+                        hotSalsaTally++;
+                        break;
+                    case ("all salsa"):
+                        hotSalsaTally++;
+                        mediumSalsaTally++;
+                        mildSalsaTally++;
+                        break;
+                    case ("no salsa"):
+                        break;
+                }
+
+            int lettuceTally =0;
+            int fajitasTally=0;
+            switch (veggies){
+                case("lettuce"):
+                    lettuceTally++;
+                    break;
+                case("fajitas"):
+                    fajitasTally++;
+                    break;
+                case("all veggies"):
+                    fajitasTally++;
+                    lettuceTally++;
+                    break;
+                case("no veggies"):
+                    break;
+            }
+
+            int cheeseTally = 0;
+            switch (cheese){
+                    case("cheese"):
+                        cheeseTally++;
+                        break;
+                    case("no cheese"):
+                        break;
+                }
+
+            int guacTally =0;
+            switch (guac){
+                    case("guac"):
+                        guacTally++;
+                        break;
+                    case("no guac"):
+                        break;
+                }
+
+            int quesoTally = 0;
+            switch (queso){
+                    case("queso"):
+                        quesoTally++;
+                        break;
+                    case("no queso"):
+                        break;
+                }
+
+            int sourCreamTally = 0;
+            switch (sourcream){
+                    case("sour cream"):
+                        sourCreamTally++;
+                        break;
+                    case("no sour cream"):
+                        break;
+                }
+
+
+            //ingredients are tallied but are not actually counted until they are USED in the burrito being assembled
+            //and added to their respective counters
+
+            //CHEESE, GUAC, QUESO AND SOURCREAM SHOULD ONLY BE COUNTED IF ADDED TO THE BURRITO IN THE ASSEMBLER
+            //add within burrito assembler cheeseCounter, guacCounter, quesoCounter, sourCreamCounter;
+
 
 //            CHOOSE HOW MANY INGREDIENTS GET ADDED TO BURRITO (BETWEEN 5 AND 9)
             int burritoCapacity = random.nextInt(5)+5;
             //System.out.println(burritoCapacity); //amount of ingredients in burrito (between 5 and 9)
 
 
+
+//            ASSEMBLING AND PRICING INGREDIENTS USED IN BURRITO
+            //burritoCapacity is randomly generated and determines how many ingredient categories are used
+            //the base burrito has rice, meat, beans, salsa and veggie by default
+            // larger burrito capacities will sequentially add cheese, guac, queso and sour cream
+            //the price and tallies are only ADDED for ingredients used
             String burrito = "";
             String baseBurrito = rice + ", " + meat + ", " + beans + ", " + salsa + ", " + veggies;
             double totalPrice = 0;
             double baseBurritoPrice = 3 + ricePrice + meatPrice+ beanPrice+ salsaPrice + veggiePrice;
 
 
-//            switch
-//
-//            riceTally(rice);
-//
-//            //riceTally
-//            //meatTally
-//            //beanTally
-//            //salsaTally
-//            //veggieTally
+
+            //THESE INGREDIENTS WILL ALWAYS BE COUNTED BECAUSE THEY ARE IN THE BASE BURRITO
+
+            whiteRiceCounter += whiteRiceTally;
+            brownRiceCounter += brownRiceTally;
+            chickenCounter += chickenTally;
+            steakCounter += steakTally;
+            carnidasCounter += carnidasTally;
+            chorizoCounter += chorizoTally;
+            sofritasCounter += sofritasTally;
+            veggieMeatCounter += veggieMeatTally;
+            pintoBeanCounter += pintoBeanTally;
+            blackBeanCounter += blackBeanTally;
+            mildSalsaCounter+= mildSalsaTally;
+            mediumSalsaCounter+= mediumSalsaTally;
+            hotSalsaCounter += hotSalsaTally;
+            lettuceCounter += lettuceTally;
+            fajitasCounter+= fajitasTally;
 
 
-//            ASSEMBLING AND PRICING INGREDIENTS USED IN BURRITO
+
             switch (burritoCapacity){
                 case 5: burrito = baseBurrito;
                     totalPrice = baseBurritoPrice;
                     break;
                 case 6: burrito = baseBurrito + ", " + cheese;
                     totalPrice = baseBurritoPrice + cheesePrice;
-                    //cheeseTally
+                    cheeseCounter+=cheeseTally;
                     break;
                 case 7: burrito = baseBurrito + ", " + cheese + ", " + guac;
                     totalPrice = baseBurritoPrice + cheesePrice + guacPrice;
-                    //cheeseTally
-                    //guacTally
+                    cheeseCounter+=cheeseTally;
+                    guacCounter+=guacTally;
                     break;
                 case 8: burrito = baseBurrito + ", " + cheese + ", " + guac + ", " + queso;
                     totalPrice = baseBurritoPrice + cheesePrice + guacPrice + quesoPrice;
-                    //cheeseTally
-                    //guacTally
-                    //quesoTally
+                    cheeseCounter+=cheeseTally;
+                    guacCounter+=guacTally;
+                    quesoCounter+=quesoTally;
                     break;
                 case 9: burrito = baseBurrito + ", " + cheese + ", " + guac + ", " + queso + ", " + sourcream;
                     totalPrice = baseBurritoPrice + cheesePrice+ guacPrice + quesoPrice + sourcreamPrice;
-                    //cheeseTally
-                    //guacTally
-                    //quesoTally
+                    cheeseCounter+=cheeseTally;
+                    guacCounter+=guacTally;
+                    quesoCounter+=quesoTally;
+                    sourCreamCounter+=sourCreamTally;
                     break;
             }
 
 
 
-
 //            PRINTING CUSTOM BURRITO AND PRICE
-
             System.out.printf("Burrito %d: %s\t Price: $%.2f\n", i+1, burrito, totalPrice);
             System.out.println();
+            grandTotal+=totalPrice; //the price of this burrito is added to the grandTotal
 
 
 
         }//burrito for loop
 
 
+
+        System.out.printf("This order has " + whiteRiceCounter + " white rice, " + brownRiceCounter + " brown rice, " +
+                chickenCounter + " chicken, " + steakCounter + " steak, " + carnidasCounter + " carnitas, " +
+                chorizoCounter + " chorizo, \n" + sofritasCounter + " sofritas, " + veggieMeatCounter + " veggie meat, " +
+                blackBeanCounter + " black beans, " + pintoBeanCounter + " pinto beans, " + mildSalsaCounter + " mild salsa, " +
+                mediumSalsaCounter + " medium salsa, " + hotSalsaCounter + " hot salsa, \n" + fajitasCounter + " fajitas, " +
+                lettuceCounter + " lettuce, " + cheeseCounter + " cheese, " + guacCounter + " guac, " + quesoCounter +
+                " queso, " + sourCreamCounter + " sour cream, and the grand total is $%.2f\n",  grandTotal);
+
+
     }// main
-
-
-
-
-
-
-
 
 
 
@@ -343,61 +541,30 @@ public class BurritoMethods {
 
 
 
-//    //INGREDIENT TALLY
-//    public static int riceTally (String rice){
-//        int riceTally = 0;
-//        switch(rice){
-//            case ("white rice"):
-//                riceTally+=1;
-//                break;
-//            case ("brown rice"):
-//                riceTally+=1;
-//                break;
-//            case ("white and brown rice"):
-//                riceTally+=2;
-//                break;
-//            case("no rice"):
-//                break;
-//        }
-//        return riceTally;
-//    }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }// class
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
